@@ -1,5 +1,5 @@
 // src/users/usersService.ts
-import { User } from "../models/models";
+import { User } from "../models/user";
 
 // A post request should not contain an id.
 export type UserCreationParams = Pick<User, "email" | "name" | "phoneNumbers">;
@@ -12,6 +12,7 @@ export class UsersService {
       name: name ?? "Jane Doe",
       status: "Happy",
       phoneNumbers: [],
+      cars: []
     };
   }
 
@@ -19,6 +20,7 @@ export class UsersService {
     return {
       id: Math.floor(Math.random() * 10000), // Random
       status: "Happy",
+      cars: [],
       ...userCreationParams,
     };
   }

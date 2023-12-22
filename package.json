@@ -18,11 +18,11 @@
   "main": "build/src/server.js",
   "scripts": {
     "tsc": "tsc --build --verbose",
-    "clean": "rimraf ./build",
-    "clean:all": "rimraf ./build && rimraf node_modules",
-    "build": "npm run spec && npm run tsc",
+    "clean": "rimraf ./dist",
+    "clean:all": "rimraf ./dist && rimraf node_modules",
+    "build": "yarn spec && yarn tsc",
     "spec": "tsoa spec-and-routes",
-    "dev": "npm run build && ts-node src/server.ts",
+    "dev": "yarn build && ts-node src/server.ts",
     "start": "node build/src/server.js"
   }
 }

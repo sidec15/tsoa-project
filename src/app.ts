@@ -1,8 +1,8 @@
 // src/app.ts
 import express, {json, urlencoded} from "express";
-import { RegisterRoutes } from "../build/routes";
+import { RegisterRoutes } from "./tsoa-output/routes";
 import swaggerUi from 'swagger-ui-express';
-import * as swaggerDocument from './../build/swagger.json';
+import * as swaggerJson from './tsoa-output/swagger.json';
 
 export const app = express();
 
@@ -14,6 +14,18 @@ app.use(
 );
 app.use(json());
 
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+export const apiDocPath = "/api-docs"
+const jsonPath = `${apiDocPath}/swagger.json`;
+const options: swaggerUi.SwaggerUiOptions = {
+  swaggerOptions: {
+    url: jsonPath
+  },
+}
+app.get(jsonPath, (_req, res) => {
+  res.json(swaggerJson);
+});
+
+// app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use(apiDocPath, swaggerUi.serveFiles(undefined, options), swaggerUi.setup(undefined, options));
 
 RegisterRoutes(app);

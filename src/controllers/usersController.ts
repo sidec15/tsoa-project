@@ -8,7 +8,7 @@ import {
   Route,
   SuccessResponse,
 } from "tsoa";
-import { User } from "../models/models";
+import { User } from "../models/user";
 import { UsersService, UserCreationParams } from "../services/usersService";
 
 @Route("users")
